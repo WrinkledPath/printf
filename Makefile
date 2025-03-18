@@ -1,4 +1,4 @@
-NAME = libft.a
+NAME = libftprintf.a
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g
 AR = ar rcs
@@ -6,7 +6,7 @@ RM = rm -f
 
 SRC_DIR = src
 OBJ_DIR = obj
-INCL_DIR = includes
+INCL_DIR = ./includes
 
 SRCS = $(wildcard $(SRC_DIR)/*.c)
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
