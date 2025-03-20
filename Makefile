@@ -1,23 +1,16 @@
 NAME = libftprintf.a
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g
+CC = cc
+CFLAGS = -Wall -Wextra -Werror
 AR = ar rcs
 RM = rm -f
 
-SRC_DIR = src
-OBJ_DIR = obj
-INCL_DIR = ./includes
-
-SRCS = $(wildcard $(SRC_DIR)/*.c)
-OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+SRCS = ft_printf.c ft_putnbr.c ft_putstr.c
+OBJS = $(SRCS:%.c=%.o)
 
 all: $(NAME)
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
-	$(CC) $(CFLAGS) -I$(INCL_DIR) -c $< -o $@
-
-$(OBJ_DIR):
-	mkdir -p $(OBJ_DIR)
+%.o: %.c ft_printf.h Makefile
+	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(OBJS)
 	$(AR) $(NAME) $(OBJS)
@@ -29,6 +22,7 @@ fclean: clean
 	$(RM) $(NAME)
 
 re: fclean all
+
 # Phony targets to prevent conflicts with actual files
 .PHONY: all clean fclean re
 
